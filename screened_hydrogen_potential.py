@@ -12,14 +12,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.linalg import eigh_tridiagonal
 
-# Grid parameters
+
 n = 5000
 a0 = 1.0
 r_max = 10.0 * a0
 dr = r_max / (n + 1)
 r = np.arange(1, n + 1) * dr
 
-# Atomic units
+
 hbar = 1.0
 mass = 1.0
 charge = 1.0
@@ -28,18 +28,18 @@ ell = 0
 # Screening length: 1 Angstrom = 1.88973 Bohr radii
 screening_length = 3.0 * 1.88973
 
-# Screened Coulomb (Yukawa) potential:
+# Screened Coulomb potential:
 # V(r) = -(e^2/r) * exp(-r/a)
 screened_potential = (
     -(charge**2 / r) * np.exp(-r / screening_length)
 )
 
-# Finite-difference kinetic-energy Hamiltonian
+
 kinetic_factor = hbar**2 / (2.0 * mass * dr**2)
 main_diagonal = np.full(n, 2.0 * kinetic_factor)
 off_diagonal = np.full(n - 1, -kinetic_factor)
 
-# Centrifugal term for angular momentum ell
+
 centrifugal = (
     hbar**2 * ell * (ell + 1) / (2.0 * mass * r**2)
 )
