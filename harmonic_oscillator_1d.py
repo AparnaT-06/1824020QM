@@ -1,6 +1,5 @@
-"""
+
 One-Dimensional Harmonic Oscillator
------------------------------------
 Finds the ground-state energy and wavefunction for a 1D harmonic
 oscillator using a finite-difference Hamiltonian.
 
@@ -11,7 +10,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.linalg import eigh_tridiagonal
 
-# Grid and physical parameters
 n = 500
 L = 8.0
 hbar = 1.0
@@ -30,7 +28,7 @@ off_diagonal = np.full(n - 1, -kinetic_factor)
 # Harmonic oscillator potential
 potential = 0.5 * mass * omega**2 * x**2
 
-# Hamiltonian and lowest eigenstate
+
 hamiltonian_diagonal = main_diagonal + potential
 energies, wavefunctions = eigh_tridiagonal(
     hamiltonian_diagonal,
