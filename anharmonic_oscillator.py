@@ -1,8 +1,5 @@
 """
 Anharmonic Oscillator
----------------------
-Compares the ground-state radial wavefunction for a harmonic potential
-and two anharmonic potentials.
 
 Potential:
     V(r) = (1/2) k r^2 + (1/3) b r^3
@@ -16,29 +13,29 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.linalg import eigh_tridiagonal
 
-# Radial grid
+
 n = 5000
 r_max = 10.0             # fm
 dr = r_max / (n + 1)
 r = np.arange(1, n + 1) * dr
 
-# Parameters (MeV-based units)
+
 mass = 940.0             # MeV/c^2
 k = 100.0                # MeV/fm^2
 hbar_c = 197.3           # MeV fm
 ell = 0
 
-# Kinetic-energy matrix in tridiagonal form
+
 kinetic_factor = hbar_c**2 / (2.0 * mass * dr**2)
 main_kinetic = np.full(n, 2.0 * kinetic_factor)
 off_kinetic = np.full(n - 1, -kinetic_factor)
 
-# Centrifugal term (zero for ell = 0)
+
 centrifugal = (
     (hbar_c**2 * ell * (ell + 1)) / (2.0 * mass * r**2)
 )
 
-# Compare harmonic, moderately anharmonic, and strongly anharmonic cases
+
 b_values = [0.0, 10.0, 30.0]
 case_names = ["Harmonic Oscillator (b = 0)",
               "Moderate Anharmonicity (b = 10)",
